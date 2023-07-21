@@ -23,5 +23,3 @@ peopleAccount.deposit()
 //console.log(peopleAccount)
 //console.log(peopleAccount.getName())
 
-const companyAccount: CompanyAccount = new CompanyAccount('VALC', 26)
-console.log(companyAccount)

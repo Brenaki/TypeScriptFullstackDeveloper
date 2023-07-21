@@ -16,12 +16,7 @@ import { CompanyAccount } from './class/CompanyAccount'
 const peopleAccount: PeopleAccount = new PeopleAccount(1, 'Victor', 13)
 console.log(peopleAccount)
 peopleAccount.deposit()
-//console.log(peopleAccount.getName())
-
-
-//peopleAccount.setName('Vinicius')
-//console.log(peopleAccount)
-//console.log(peopleAccount.getName())
 
 const companyAccount: CompanyAccount = new CompanyAccount('VALC', 26)
 console.log(companyAccount)
+console.log(companyAccount.deposit())
