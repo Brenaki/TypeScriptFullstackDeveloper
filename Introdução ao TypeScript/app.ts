@@ -1,29 +1,26 @@
-const num: number = 13
+// Aula 6
+const lista: number[] = [4,7,5,2,1,2,4,5,6,21,3,543,12,32,13,3,45,45,6,2,21,4,6,5]
+const listaN: string[] = ['Victor', 'Tina', 'Maria', 'João', 'Gustavo', 'Vinicius', 'Carlos']
 
-if(num > 15){
-    console.log('Num maior que 15')
-}
+const buscaNum = lista.find(num => num >6)
 
-else if(num == 15){
-    console.log('Num é igual a 15')
-}
+console.log(buscaNum)
 
-else{
-    console.log('Num menor que 15')
-}
 
-// TypeUser
+// for each 
 
-const typeUser = {
-    admin: 'Seja bem-vindo admin',
-    student: 'Você é um estudante',
-    viewer: 'Você pode visualizar'
-}
+console.log(listaN)
 
-function validateUser(user: string) {
-    console.log(typeUser[user as keyof typeof typeUser])
-}
+listaN.forEach(str => {
+    if (str[0] == 'G' && str[str.length-1] == 'o'){
+        console.log(str)
+    }
+})
 
-const usuario = 'student'
+// map
 
-validateUser(usuario)
+listaN.map(str => {
+    if (str[0] == 'V' && str[str.length-1] == 's'){
+        console.log(str)
+    }
+})
