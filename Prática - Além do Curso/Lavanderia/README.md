@@ -1,0 +1,23 @@
+Dentro de uma lavderia o clinete pode:
+
+- Lavar roupa
+  - Para lavar a roupa o cliente deve pagar 15$;
+  - Colocar no maximo 25 peças dentro da maquina de lavar;
+  - Selecionar o modo de lavagem;
+  - Aguardar o tempo de lavagem;
+  - Retirar a roupa da maquina de lavar.
+- Secar roupa
+  - Para secar a roupa o cliente deve pagar 10$;
+  - Colocar no maximo 30 peças dentro da maquina de secar;
+  - Selecionar a temperatura;
+  - Aguardar o tempo de secagem;
+  - Retirar a roupa da maquina de secar.
+- Pagar
+  - O cliente deve selecionar uma maquina de lavar ou secar disponivel;
+  - Selecionar o metodo de pagamento;
+  - Pagar;
+  - Assim, a maquina selecionada será desbloqueada para uso.
+- Assistir Tv
+  - O cliente pode ligar a tv para assistir um programa que esteja passando, enquanto aguarda a finalização do seu processo de lavagem ou secagem.
+- Ligar o ar-condicionado
+  - O cliente pode ligar o ar-condicionado para passar o tempo, enquanto aguarda a finalização do seu processo de lavagem ou secagem.
