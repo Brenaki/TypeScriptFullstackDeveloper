@@ -2,7 +2,7 @@ import { Plan, Title } from "./components/Plan"
 
 export const App = () => {
   return (
-    <div className="bg-gray-700">
+    <div className="bg-gray-700 h-screen p-8">
       <Title text={"Selecione seu plano"}/>
       <div className="p-16 justify-center items-center gap-16 flex">
       <Plan text="Plano Silver" description="Perfeito para iniciantes" value={29.99} type="text-zinc-300" vetor={["Ferramentas básicas", "Projetos individuais", "Suporte 24/7"]}/>
