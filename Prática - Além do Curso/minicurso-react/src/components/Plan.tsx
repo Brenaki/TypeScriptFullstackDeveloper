@@ -48,7 +48,7 @@ export const Plan = ({text,description,value, type, best, feature}: PlanProps) =
   }
   <div className="self-stretch flex-col justify-start items-center gap-8 flex">
     <div className="self-stretch justify-start items-center gap-4 inline-flex">
-      <Diamond size={32} className={`${color} items-center`}/>
+      <Diamond size={32} className={`${color} items-center`} weight="fill"/>
       <div className={`text-center text-2xl font-bold ${color}`}>{text}</div>
     </div>
     <div className="self-stretch flex-col justify-center items-start gap-4 flex">
