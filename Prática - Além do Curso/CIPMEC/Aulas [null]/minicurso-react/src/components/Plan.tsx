@@ -60,18 +60,16 @@ export const Plan = ({text,description,value, type, best, feature}: PlanProps) =
       <div className="text-white text-base font-normal">{description}</div>
     </div>
   </div>
-  <div className="self-stretch flex-col justify-start items-start gap-8 flex">
+  <div className="self-stretch flex-col gap-6 flex">
     <button className="hover:bg-violet-700 transition-colors text-white text-base font-bold self-stretch p-4 bg-violet-600 rounded-lg justify-center items-center gap-2.5 inline-flex">
       Assinar agora
     </button>
-    <div className="self-stretch pt-4 border-t border-zinc-700 flex-col justify-start items-start gap-3.5 flex"></div>
-      
+    <div className="self-stretch pt-1 border-t border-zinc-700 flex-col gap-3 flex"></div>
       {
         feature.map((feature) => (
           <Feature text={feature}/>
         ))
       }
-
         </div>
     </div>
     )

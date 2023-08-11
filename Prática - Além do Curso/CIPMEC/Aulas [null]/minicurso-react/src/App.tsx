@@ -3,7 +3,7 @@ import { Title } from "./components/Title"
 
 export const App = () => {
   return (
-    <div className="bg-neutral-900 h-screen p-8">
+    <div className="bg-neutral-900  p-8">
       <Title text={"Selecione seu plano"}/>
       <div className="p-16 justify-center gap-8 flex">
 
