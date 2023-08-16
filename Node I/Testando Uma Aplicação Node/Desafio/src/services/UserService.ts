@@ -3,7 +3,7 @@ export interface User {
     email: string
 }
 
-const db = [
+export const db = [
     {
         name: "Joana",
         email: "joana@dio.com",
@@ -20,13 +20,18 @@ export class UserService {
     }
 
     createUser = (name: string, email: string) => {
-        const user = {
-            name,
-            email
+        if(name && email) {
+            const user = {
+                name,
+                email
+            }
+    
+            this.db.push(user)
+            console.log('DB atualizado', this.db)
         }
-
-        this.db.push(user)
-        console.log('DB atualizado', this.db)
+        else {
+            console.log('Invalid! Missing information')
+        }
     }
 
     getAllUsers = () => {
@@ -34,18 +39,25 @@ export class UserService {
     }
 
     deleteUser = (name: string, email: string) => {
-        const user = {
-            name,
-            email
-        }
-
-        this.db.map((val, key) => {
-            if(val.name === user.name && val.email === user.email) {
-                this.db.splice(key, 1)
+        if(name && email) {
+            const user = {
+                name,
+                email
             }
-        })
-
-        console.log('DB atualizado', user)
+            
+            this.db.map((val, key) => {
+                if(val.name == user.name && val.email == user.email) {
+                    this.db.splice(key, 1)
+                }
+            })
+    
+            console.log('DB atualizado', this.db)
+        }
+        else {
+            console.log('Invalid! Missing information')
+        }
+        
+        
     }
 }
 

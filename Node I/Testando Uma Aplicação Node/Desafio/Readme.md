@@ -22,14 +22,14 @@ desenvolvido por [Victor Cerqueira](https://github.com/brenaki)
     npm run dev
 
 #### Desafios
-[ ] Incluir os testes unitários pendentes no controller
-  - Verificar a resposta de erro caso o usuário não informe o name
-  - Verificar se a função getAllusers está sendo chamada
+[ ✅ ] Incluir os testes unitários pendentes no controller
+  - Verificar a resposta de erro caso o usuário não informe o name | Concluído
+  - Verificar se a função getAllusers está sendo chamada | Concluído
 
-[ ] Implementa uma validação para o campo email
-  - O usuário nâo pode ser criado caso não informe o email
+[ ✅ ] Implementa uma validação para o campo email | Concluído
+  - O usuário nâo pode ser criado caso não informe o email | Concluído
   - Escreva o teste unitário
 
-[ Check ] Refatorar e implementar a rota para deletar o usuário
+[ ✅ ] Refatorar e implementar a rota para deletar o usuário
   - Refatore a rota para deletar usuários | Concluído
   - Escreva os testes unitários necessários | Concluído

@@ -1,22 +1,20 @@
-import { User, UserService } from "./UserService";
+import { createUsersService } from "../__mocks__/services/mockCreateUsers.mock";
+import { deleteUsersService } from "../__mocks__/services/mockDeleteUser.mock";
+import { getAllUsersService } from "../__mocks__/services/mockGetAllUsers.mock";
+import { nothingEmailCreateService } from "../__mocks__/services/mockNothingEmail.mock";
+import { nothingNameCreateService } from "../__mocks__/services/mockNothingName.mock";
 
-describe('UserService', () => {
-    const mockDb: User[] = []
-    const userService = new UserService(mockDb);
+// First create user
+createUsersService()
 
-    it('Deve adicionar um novo usuário', () => {
-        const mockConsole = jest.spyOn(global.console, 'log')
-        userService.createUser('nath', 'nath@test.com');
-        expect(mockConsole).toHaveBeenCalledWith('DB atualizado', mockDb)
-    })
-})
+// Second get all users
+getAllUsersService()
 
-describe('UserService', () => {
-    const mockDb: User[] = []
-    const userService = new UserService(mockDb);
+// Third missing name
+nothingNameCreateService()
 
-    it('Deve listar todos os usuários', () => {
-        const mockConsole = jest.spyOn(global.console, 'log')
-        expect(mockConsole).toHaveBeenCalledWith(mockDb)
-    })
-})
+// Fourth missing email
+nothingEmailCreateService()
+
+// Fifth delete user
+deleteUsersService()

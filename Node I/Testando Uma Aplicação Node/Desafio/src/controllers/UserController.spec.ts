@@ -1,39 +1,20 @@
-import { UserController } from "./UserController";
-import { UserService } from '../services/UserService'
-import { Request } from 'express'
-import { makeMockResponse } from "../__mocks__/mockResponse.mock";
+import { getAllUsersController } from "../__mocks__/controllers/mockGetAllUsers.mock";
+import { createUserController } from "../__mocks__/controllers/mockCreateUsers.mock";
+import { nothingNameCreateController } from "../__mocks__/controllers/mockNothingName.mock";
+import { nothingEmailCreateController } from "../__mocks__/controllers/mockNothingEmail.mock";
+import { deleteUserController } from "../__mocks__/controllers/mockDeleteUser.mock";
 
-describe('UserController', () => {
-    const mockUserService: Partial<UserService> = {
-        createUser: jest.fn()
-    }
-    
-    const userController = new UserController(mockUserService as UserService);
+// First create user
+createUserController()
 
-    it('Deve adicionar um novo usuário', () => {
-        const mockRequest = {
-            body: {
-                name: 'Nath',
-                email: 'nath@test.com'
-            }
-        } as Request
-        const mockResponse = makeMockResponse()
-        userController.createUser(mockRequest, mockResponse)
-        expect(mockResponse.state.status).toBe(201)
-        expect(mockResponse.state.json).toMatchObject({ message: 'Usuário criado' })
-    })
-})
+// Second get all users
+getAllUsersController()
 
-describe('UserController', () => {
-    const mockUserService: Partial<UserService> = {
-        getAllUsers: jest.fn()
-    }
+// Third missing name
+nothingNameCreateController()
 
-    const userController = new UserController(mockUserService as UserService);
+// Fourth missing email
+nothingEmailCreateController()
 
-    it('Deve listar todos os usuários', () => {
-        const mockResponse = makeMockResponse()
-        userController.getAllUsers(mockResponse)
-        expect(mockResponse.state.status).toBe(200)
-    })
-})
+// Fifth delete user
+deleteUserController()
