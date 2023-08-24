@@ -1,20 +1,78 @@
-import { getAllUsersController } from "../__mocks__/controllers/mockGetAllUsers.mock";
-import { createUserController } from "../__mocks__/controllers/mockCreateUsers.mock";
-import { nothingNameCreateController } from "../__mocks__/controllers/mockNothingName.mock";
-import { nothingEmailCreateController } from "../__mocks__/controllers/mockNothingEmail.mock";
-import { deleteUserController } from "../__mocks__/controllers/mockDeleteUser.mock";
+import { UserController } from "../controllers/UserController";
+import { UserService } from '../services/UserService';
+import { Request } from 'express';
+import { makeMockResponse } from "../__mocks__/mockResponse.mock";
 
-// First create user
-createUserController()
+const mockUserService = {
+    createUser: jest.fn()
+}
 
-// Second get all users
-getAllUsersController()
+jest.mock('../services/UserService', () => {
+    return {
+        UserService: jest.fn().mockImplementation(() => {
+            return mockUserService
+        })
+    }
+})
 
-// Third missing name
-nothingNameCreateController()
+describe('UserController', () => {
 
-// Fourth missing email
-nothingEmailCreateController()
+    const userController = new UserController();
+    const mockResponse = makeMockResponse();
 
-// Fifth delete user
-deleteUserController()
+    it('Deve retornar usuário criado', () => {
+        const mockRequest = {
+            body: {
+                name: 'nath',
+                email: 'nath@example.com',
+                password: '12345'
+            }
+        } as Request;
+
+        userController.createUser(mockRequest, mockResponse);
+        expect(mockResponse.state.status).toBe(201);
+        expect(mockResponse.state.json).toMatchObject({ message: 'Usuário criado' });
+    });
+
+    it('Deve retornar erro caso o usuário não informe o nome', () => {
+        const mockRequest = {
+            body: {
+                name: '',
+                email: 'nath@test.com',
+                password: '12345'
+            }
+        } as Request;
+
+        userController.createUser(mockRequest, mockResponse);
+        expect(mockResponse.state.status).toBe(400);
+        expect(mockResponse.state.json).toMatchObject({ message: `Bad request! You're missing something. Please try again` });
+    });
+
+    it('Deve retornar erro caso o usuário não informe o email', () => {
+        const mockRequest = {
+            body: {
+                name: 'nath',
+                email: '',
+                password: '12345'
+            }
+        } as Request;
+
+        userController.createUser(mockRequest, mockResponse);
+        expect(mockResponse.state.status).toBe(400);
+        expect(mockResponse.state.json).toMatchObject({ message: `Bad request! You're missing something. Please try again` });
+    });
+
+    it('Deve retornar erro caso o usuário não informe a senha', () => {
+        const mockRequest = {
+            body: {
+                name: 'nath',
+                email: 'nath@test.com',
+                password: ''
+            }
+        } as Request;
+
+        userController.createUser(mockRequest, mockResponse);
+        expect(mockResponse.state.status).toBe(400);
+        expect(mockResponse.state.json).toMatchObject({ message: `Bad request! You're missing something. Please try again` });
+    });
+});

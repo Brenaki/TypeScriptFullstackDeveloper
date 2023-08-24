@@ -19,8 +19,4 @@ private userRepository: UserRepository
         return this.userRepository.getUser(id_user)
     }
 
-    deleteUser = (name: string, email: string) => {
-    
-}
-
 }

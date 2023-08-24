@@ -1,20 +1,46 @@
-import { createUsersService } from "../__mocks__/services/mockCreateUsers.mock";
-import { deleteUsersService } from "../__mocks__/services/mockDeleteUser.mock";
-import { getUserService } from "../__mocks__/services/mockGetAllUsers.mock";
-import { nothingEmailCreateService } from "../__mocks__/services/mockNothingEmail.mock";
-import { nothingNameCreateService } from "../__mocks__/services/mockNothingName.mock";
+import { UserService } from "../services/UserService";
+jest.mock('../repositories/UserRepository')
+jest.mock('../database', () => {
+    initialize: jest.fn()
+})
+const mockUserRepository  = require('../repositories/UserRepository')
 
-// First create user
-createUsersService()
+    describe('UserService', () => {
+    const userService = new UserService(mockUserRepository)
+        
+    it('Deve adicionar um novo usuário', async () => {
+            mockUserRepository.createUser = jest.fn().mockImplementation(() => { return Promise.resolve({
+                id_user: '12345',
+                name: 'nath',
+                email: 'nath@gmail.com',
+                password: '123456'
+            })
+        })
 
-// Second get all users
-getUserService()
+            const response = await userService.createUser('nath', 'nath@test.com', '12345');
+            expect(mockUserRepository.createUser).toHaveBeenCalled()
+            expect(response).toMatchObject({
+                id_user: '12345',
+                name: 'nath',
+                email: 'nath@gmail.com',
+                password: '123456'
+            })
+    })
+})
 
-// Third missing name
-nothingNameCreateService()
+describe('UserService', () => {
+    const userService = new UserService(mockUserRepository)
 
-// Fourth missing email
-nothingEmailCreateService()
+    it('Deve listar o usuário solicitado', async () => {
+        mockUserRepository.getUser = jest.fn().mockImplementation(() => { return Promise.resolve({
+            id_user: '12345'
+        })
+    })
+    const response = await userService.getUser('12345')
+    expect(mockUserRepository.getUser).toHaveBeenCalled()
+    expect(response).toMatchObject({
+        id_user: '12345',
+    })
+    })
+})
 
-// Fifth delete user
-deleteUsersService()
