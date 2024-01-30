@@ -1,3 +1,4 @@
+import { sign } from "jsonwebtoken";
 import { AppDataSource } from "../database";
 import { User } from "../entities/User";
 import { UserRepository } from "../repositories/UserRepository";
@@ -19,4 +20,29 @@ private userRepository: UserRepository
         return this.userRepository.getUser(id_user)
     }
 
+    getAuthenticatedUser = async (email:string, password: string): Promise<User | null> => {
+        return  this.userRepository.getUserByEmailAndPassword(email,password)
+    }
+
+    getToken = async (email: string, password: string): Promise<string> => {
+        const user = await this.getAuthenticatedUser(email, password)
+
+        if(!user){
+            throw new Error("Invalid credentials")
+        }
+        const tokenData = {
+            name: user?.name,
+            email: user?.email
+        }
+
+        const tokenKey = '123456789'
+
+        const tokenOptionns = {
+            subject: user?.id_user
+        }
+
+        const token = sign(tokenData, tokenKey, tokenOptionns)
+
+        return token
+    }
 }

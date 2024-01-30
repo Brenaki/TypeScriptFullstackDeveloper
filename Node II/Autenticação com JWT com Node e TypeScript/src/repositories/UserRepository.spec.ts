@@ -8,7 +8,7 @@ describe('UserRepository', () => {
     let managerMock: Partial<EntityManager>
 
     const mockUser: User = {
-        user_id: '123',
+        id_user: '123',
         name: 'John',
         email: 'john@example.com',
         password: 'password',
